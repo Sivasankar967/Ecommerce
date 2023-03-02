@@ -10,10 +10,11 @@ function CartPage({ cartItems, setCartItems, setIsCartOpen }) {
     }
     else {
       newCart = cartItems.map((ite) => {
-        return ite.id === item.id && ite.QTY !== 0 ? { ...ite, QTY: ite.QTY -= 1 } : ite
+        return ite.id === item.id && ite.QTY === 1 ? { ...ite, QTY: ite.QTY = 1 }  :
+        ite.id === item.id ? { ...ite, QTY: ite.QTY -= 1 } : ite
       })
     }
-    newCart = newCart.filter(ite => ite.QTY !== 0)
+    // newCart = newCart.filter(ite => ite.QTY !== 0)   
     setCartItems(newCart);
   }
 
@@ -31,7 +32,7 @@ function CartPage({ cartItems, setCartItems, setIsCartOpen }) {
         <i className='fa fa-times cart-close-icon' onClick={() => setIsCartOpen(false)}></i>
         {cartItems.map((item, index) => {
           return <div className='cart-item' key={index}>
-            <img src={item.image} alt={"item image"} />
+            <img src={item.image} alt={"item img"} />
             <div>
               <h4>{item.title}</h4>
               <h5>Item Price: Rs {item.price}</h5>
